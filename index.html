@@ -2,72 +2,21 @@
 <h2 style = "text-align:center; font-size:1.4em;">Greetings Mozilla <span style = "text-decoration: line-through;">Builder</span> Internet Ecosystem Grant Program Reviewer!</h2>
 <p>The purpose of <strong>oComponents</strong> is to make <i>embedding 3rd party functionality dramatically simpler</i>, so of course I couldn&#x27;t skip the opportunity in my application to give you some interactive examples that do just that!</p><p>In this document I'd like to give you some more in-depth background on <a href = "https://runkit.com/docs/embed">RunKit embeds</a>, the inspiration for <strong>oComponents</strong>, as well as showing you some demos of what a RunKit integration in <a href = "https://developer.mozilla.org/en-US/">MDN Web Docs</a> could look like. Hopefully, this will provide a real-world example of the sorts of experiences that could become more commonplace after <strong>oComponents</strong> makes doing this sort of thing much simpler, both for publishers and consumers of these integrations.</p>
 <h2>Enhancing Server-Side MDN Web Docs</h2>
-<p>MDN Web Docs have become the de facto reference manual for the web, and currently do a great job of providing <a href = "https://developer.mozilla.org/en-US/docs/MDN/Structures/Live_samples">interactive documentation</a> for web technologies like (browser) JavaScript, CSS, and HTML. However, MDN has a harder time providing this sort of functionality for the server-side technologies it also documents:</p>
-<ul><li>Many client-side web technologies, like WebSockets, require complementary server-side components in order to use. As explained <a href = "https://developer.mozilla.org/en-US/docs/MDN/Tools/Sample_server">here</a>, the <i>live sample</i> system falls short in these cases and thus requires the user to install various tools on their own systems in order to properly follow along.<br><br></li>
-<li>MDN of course also aims to document several server-side technologies in their own right, from standard JavaScript in node.js to libraries like in this <a href = "https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction">express tutorial</a>. Here too, the tutorial can't be nearly as interactive or "in place" as the client-side tutorials.</li>
-</ul>
-<p>RunKit can fill in the gap in both these use cases to give server-side documentation the same first class treatment as client-side documentation, being fully editable and runnable directly from the MDN site. Critically, it could also be as easily embeddable as the current client-side examples with the current templating system.</p>
-<p>As a quick demonstration of what is possible, I've taken the existing Node.js Buffer API documentation and given it the "live sample" treatment. Click on the image below to see how Node APIs could be presented as interactively on MDN as the JavaScript DOM APIs are today:</p>
-<p><a href="/buffer"><figure class="css-qv45bh"><img src="/assets/images/live-documentation.png" alt="Live Documentation Concept"/><figcaption>Every Page Can Be a Get Started Page</figcaption></figure></a></p>
-<p>Similarly, tutorials that need to make use of a live server can do so when RunKit embeds are placed into <strong>endpoint mode</strong>, like <a href = "https://expressjs.com/en/starter/hello-world.html">expressjs.com's own documentation</a> currently does today. MDN can take this a step further by having combining such a strategy with client-side elements, to give a full "end to end" interactive experience. Click the image below to see a small mockup of what such an experience could be like:</p>
+<p>MDN Web Docs have become the de facto reference manual for the web, and currently do a great job of providing <a href = "https://developer.mozilla.org/en-US/docs/MDN/Structures/Live_samples">interactive documentation</a> for web technologies like (browser) JavaScript, CSS, and HTML. However, MDN has a harder time providing this sort of functionality for the server-side technologies.</p>
+<p>Whether it's the complementary server-side code needed to fully showcase client-side technologies like <a href = "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications">WebSockets</a>, or even full blown server-side tutorials like this <a href = "https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction">Node.js express tutorial</a>, the existing <i>live samples</i> system unfortunately fails to accomodate these critical components. As described in <a href = "https://developer.mozilla.org/en-US/docs/MDN/Tools/Sample_server">this document</a>, MDN has to fall back to a more traditional documentation style of requiring the user to download and install on their own in order to properly follow along.</p>
+<p>The only way to make such tutorials fully interactive would be to immediately provide a real running server to every single user that visits the page... which is exactly what RunKit embeds allow you to do in <strong>endpoint mode</strong>. RunKit can thus fill this gap give server-side documentation the same first class treatment as client-side documentation, turning it into fully editable and runnable "live code" on MDN pages. Critically, it could do this without sacrificing the simplicity that documentation authors currently have when using MDN's templating system for making client-side examples.</p>
+<h2>Demos!</h2>
+<p>As a quick demonstration of the range of possibilities, I've started by taking the existing Node.js Buffer API documentation and given it the "live sample" treatment. Click on the image below to see how Node APIs could be presented as interactively on MDN as the JavaScript DOM APIs are today. Not that each of these examples is running in <strong>real running instance of Node</strong>, not being "emulated" on the browser in any way:</p>
+<p><a href="/buffer"><figure class="css-qv45bh"><img src="/assets/images/live-documentation.png" alt="Live Documentation Concept"/><figcaption>Node.js Buffer API Documentation with Live Samples</figcaption></figure></a></p>
+<p>Similarly, tutorials that need to make use of a live server can do so when RunKit embeds are placed into <strong>endpoint mode</strong>, like expressjs.com's own documentation currently does <a href = "https://expressjs.com/en/starter/hello-world.html">today</a>. MDN can take this a step further by fleshing out more complicated applications. In the example below, not that we are using a wide variety of npm packages, since RunKit has access to every version of every package on npm:</p>
 <p><a href="/getting-started"><figure class="css-qv45bh"><img src="/assets/images/getting-started.png" alt="Getting Started Concept"/><figcaption>Tutorials that let you Create a Real Server Right in Your Web Page</figcaption></figure></a></p>
-
-
-<h2>Live Documentation - <a href="/buffer">Live Demo Link</a></h2><p>Before diving into the dedicated &quot;Getting Started&quot; page, we wanted to share our
-belief that <em>every</em> page has the opportunity to get a user experimenting with
-node. Partially inspired by Josh Ashkanas&#x27; work on <a href="http://underscorejs.org/docs/underscore.html">Literate Programming</a> as well
-as Brett Victor&#x27;s famous talks, we fundamentally believe that any &quot;dead&quot; snippet
-of code is a lost opportunity. In this demo we&#x27;ve taken the existing markdown
-files that comprise the node documentation and made the substantial code samples
-first class citizens – meant to be interacted with directly to really see if
-one understands the concepts.</p><p><a href="/buffer"><figure class="css-qv45bh"><img src="/assets/images/live-documentation.png" alt="Live Documentation Concept"/><figcaption>Every Page Can Be a Get Started Page</figcaption></figure></a></p><h2>Getting Started - <a href="/getting-started">Live Demo Link</a></h2><p>Our main goal with the &quot;Getting Started&quot; page we&#x27;re presenting is that we try
-to specifically focus on what differentiates Node from other platforms, that
-way new users can quickly understand <strong>why</strong> they&#x27;d want to use Node instead
-of merely <strong>how</strong> to use Node. Additionally, we try to paint Node in the broad
-strokes it represents, offering explanations for its various use cases beyond
-just serving webpages -- all this while still maintaining interactivity.</p><p><a href="/getting-started"><figure class="css-qv45bh"><img src="/assets/images/getting-started.png" alt="Getting Started Concept"/><figcaption>Dedicated Lessons That Focus on What Differentiates Node</figcaption></figure></a></p><h2>Who Uses RunKit?</h2><p>These great sites have already integrated</p><ul><li><a href="http://npmjs.com">NPM</a></li><li><a href="http://expressjs.com/en/starter/hello-world.html">Express</a></li><li><a href="https://lodash.com/docs/4.17.5">Lodash</a></li><li><a href="https://facebook.github.io/immutable-js/">Facebook Immutable</a></li><li><a href="http://ramdajs.com/docs/">Ramda</a></li><li><a href="https://fontawesome.com/how-to-use/use-with-node-js">Font Awesome</a></li><li><a href="http://stripe.com/">Stripe</a></li></ul><h2>Why RunKit?</h2><ul><li><p>We&#x27;re here to help! And we enjoy it! Use cases like this are why we started this
-project so we&#x27;re super excited to contribute however we can, and assist in whatever
-way is needed if you decide to use RunKit. It also goes without saying that this
-service would be completely free.</p></li><li><p><strong>module-fs</strong> is by far our most important technology, as Node more than any other
-platform is fundamentally a community effort through the amazing package ecosystem that
-has built up around it. I think we should be highlighting this both for its technical merits
-but also for its amazing accessibility.</p></li><li><p>We are dedicated to supporting every major version of Node forever. One of our main
-use cases is <a href="https://blog.runkit.com/2017/02/01/stop-filing-bugs-file-a-container/">filing bugs</a>,
-and we thus consider it our responsibility to maintain the reproducibility of those bugs
-forever. We&#x27;d love to discuss the possibility of supporting <em>nightly Node builds</em> in the docs as well.</p></li><li><p>The code lives on your site! We hate the idea of the fundamental components of websites
-being separated across privately administered databases. We want it to be easy to manage and
-edit your code through your existing PR flow, and even to take your code somewhere else.</p></li><li><p>RunKit is totally themable - pictured below is the custom theme Stripe uses on their home
-page.</p></li></ul><p><figure class="css-qv45bh"><img src="/assets/images/stripe.png" alt="Showing Stripe&#x27;s Green Theme"/><figcaption>RunKit is themable!</figcaption></figure></p><ul><li><p>RunKit is <strong>fast</strong>. We completely re-architected our embeds to support hundreds of
-simultaneously running examples on a page. We consider projects like the nodejs website
-redesign to be our primary use case and have invested heavily in it.</p></li><li><p>RunKit is a full member of TC39 and deeply interested in the future of JavaScript as a whole.</p></li></ul><h2>Contact</h2><p>The RunKit team is always happy to help, I&#x27;ve listed the members below:</p><div><style>
-    .pic
-    {
-        display: inline-block;
-        background-size:cover;
-        border-radius:50%;
-        width:100px;
-        height:100px;
-    }
-    
-    a.pic { display: inline-block }
-</style></div><div><center style = "margin:50px 0">
-<a class = "pic" href = "mailto:francisco@runkit.com">
-<div class = "pic" style = "background-image:url(https://runkit.com/assets/images/team/tolmasky.jpg);"></div>
-Francisco
-</a>
-<a class = "pic" href = "mailto:pieter@runkit.com">
-<div class = "pic" style = "background-image:url(https://runkit.com/assets/images/team/ouwerkerk.jpg);"></div>
-Pieter
-</a>
-<a class = "pic" href = "mailto:randy@runkit.com">
-<div class = "pic" style = "background-image:url(https://runkit.com/assets/images/team/me1000.jpg);"></div>
-Randy
-</a>
-<a class = "pic" href = "mailto:maya@runkit.com">
-<div class = "pic" style = "background-image:url(https://runkit.com/assets/images/team/maya.jpg);"></div>
-Maya
-</a>
-<a class = "pic" href = "mailto:seandon@runkit.com">
-<div class = "pic" style = "background-image:url(https://runkit.com/assets/images/team/seandon.jpg);"></div>
-Seandon
-</a></div><div></center></div><p>Thanks for you time!</p></div></main></body></html>
+<h2>How Would oComponents Improve This?</h2>
+<p>RunKit provides a very focused slice of functionality: the ability to on-the-fly run any code snippet using any version of Node, accessing any npm package, on a real running server. However, it took a tremendous amount of effort to make this functionality accessible as an embed, simply from a security and performance perspective. While critical to delivering the overall experience, this work was completely orthogonal to any of the core competencies I just listed, and instead revolved entirely around meticulous and obscure interactions between different browser vendors, rarely used edge-case functionality in the DOM, and sometimes even other 3rd party standards like oEmbed (that hasn't been updated in years).</p>
+<p>To gives just one example of these challenges, note that all the RunKit embeds load simultaneously in the first demo above. If you were to check the memory monitor, you'd also notice that use minimally more memory than if you were to load just one RunKit embed. This is because RunKit embeds use a sophisticated system where regardless of whether you use 1 or 100 embeds, the "app" itself is only ever loaded in one invisible iframe, that then <i>renders</i> each "embed instance" to a series of empty iframes, treating them almost like canvas elements. This means a host web page will only ever <i>pay the cost" of loading a RunKit embed once</i>, both in terms of speed <i>and</i> memory usage. On the other hand, if you load multiple instances of just about any other iframe-based embed, you'll see the memory use increase linearly, taxing the host page and greatly disincentivizing the liberal use of such components.</p>
+<p>Techniques such as these should not be de facto "trade secrets" or "competitive advantages", nor even require arduous re-implementation by every publisher that wishes to provide a completely unrelated service. One of the benefits of a system like oComponents is that it could provide this sort of functionality transparently and allow publishers to focus on what they're good at, vs. becoming experts on browser internals. This would mean a better web for everyone: more dynamic <i>and</i> more performant.</p>
+<p>If making your service fit in as cleanly as any same-origin component was as easy writing a same-origin component, I think you could see how more services could go the RunKit route. Circling back to MDN, I think there's opportunities for all sorts of future integrations, not just RunKit. You could easily imagine services like <a href = "browserling.com">browserling.com</a> or <a href = "lambdatest.com">lambdatest.com</a> allowing you to compare the rendering of the current client-side <i>live samples</i> on a wide array of different browsers, <i>without ever needing to leave the documentation page</i>!
+<h2>Thanks!</h2>
+<p>Hopefully this provides a little more insight into the journey that sparked the idea for <strong>oComponents</strong>. I certainly wish something like this already existed when I started working on RunKit embeds, and given the "prior art" links I provided in the main application, I think I'm not the only one! Please feel free to <a href = "mailto:tolmasky@gmail.com">reach out</a> if you have any questions. Below I've listed a few more sites that currently use RunKit:</p>
+    <ul><li><a href="http://npmjs.com">NPM</a></li><li><a href="http://expressjs.com/en/starter/hello-world.html">Express</a></li><li><a href="https://lodash.com/docs/4.17.5">Lodash</a></li><li><a href="https://facebook.github.io/immutable-js/">Facebook Immutable</a></li><li><a href = "https://jhildenbiddle.github.io/docsify-plugin-runkit/#/?id=embedding">Docsify</a></li></ul>
+    <p>&mdash; Francisco</p><br><br><br><br>
+    </div></main></body></html>
